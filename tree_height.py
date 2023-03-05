@@ -20,9 +20,9 @@ def compute_height(n, parents):
             vertibas = parents[vertibas]  
         k = i
         while k != -1 and augstumi[k] == 0:
-                augstumi[vertibas] = augstums
-                augstums -= 1
-                k = parents[k]
+            augstumi[vertibas] = augstums
+            augstums -= 1
+            k = parents[k]
     return numpy.max(augstumi)
 
 
@@ -36,7 +36,7 @@ def main():
         if "a" in file:
             print("Error")
             return
-        with open("test/" + file) as f:
+        with open ("test/" + file, "r", encoding='UTF-8') as f:
             node = int(f.readlines())    
             parents = numpy.array(list(map(int, f.readline().split)))
     augstums = compute_height(node, parents)
