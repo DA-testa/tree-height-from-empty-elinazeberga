@@ -12,14 +12,15 @@ def compute_height(n, parents):
         if augstumi[i] > 0:
             continue
         augstums = 0
-        while i != -1:
-            if augstumi[i]>0:
-                augstums += augstumi[i]
+        k=i
+        while k != -1:
+            if augstumi[k]>0:
+                augstums += augstumi[k]
                 break
             else:
                 augstums += 1
-                i = int(parents[i])
-                augstumi[i] = augstums
+                k = int(parents[i])
+                augstumi[k] = augstums
         if augstums > max_height:
             max_height = augstums
     return max_height
@@ -27,7 +28,7 @@ def compute_height(n, parents):
 
 def input_file(file):
     try:
-        with open(f"./test/{file}") as f:
+        with open(file, "r",  encoding="utf8") as f:
             saturs = f.readlines()
     except:
         print("Error")
