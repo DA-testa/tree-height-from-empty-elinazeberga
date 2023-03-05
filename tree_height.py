@@ -28,9 +28,9 @@ def compute_height(n, parents):
 
 def input_file(file):
     try:
-        with open(file, "r",  encoding="utf8") as f:
+        with open(file,  encoding="utf8") as f:
             saturs = f.readlines()
-    except:
+    except IOError:
         print("Error")
         return None, None
     
