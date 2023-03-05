@@ -6,7 +6,7 @@ import numpy
 
 
 def compute_height(n, parents):
-    augstumi = numpy.zeros(int(n))
+    augstumi = numpy.zeros(n, dtype=int)
     for i in range(int(n)):
         if augstumi[i] != 0:
             continue
@@ -27,19 +27,19 @@ def compute_height(n, parents):
 
 
 def main():
-    ievadit = input().strip()
-    if ievadit == "I":
-        node = int(input().strip())
-        parents = numpy.array(list(map(int, input().split)))
+    check = input()
+    if check == "I":
+        n = int(input())
+        parents = list(map(int, input().split()))
     else:
-        file = input().strip()
+        file = input()
         if "a" in file:
             print("Error")
             return
         with open ("test/" + file, "r", encoding='UTF-8') as f:
-            node = int(f.readlines())    
+            n = int(f.readlines())    
             parents = numpy.array(list(map(int, f.readline().split)))
-    augstums = compute_height(node, parents)
+    augstums = compute_height(n, parents)
     print(augstums)    
     
 
