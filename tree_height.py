@@ -2,17 +2,69 @@
 
 import sys
 import threading
-import numpy
+import numpy 
 
 
 def compute_height(n, parents):
-    # Write this function
     max_height = 0
-    # Your code here
+    augstumi = numpy.zeros(int(n))
+    for i in range(int(n)):
+        if augstumi[i] > 0:
+            continue
+        augstums = 0
+        while i != -1:
+            if augstumi[i]>0:
+                augstums += augstumi[i]
+                break
+            else:
+                augstums += 1
+                i = int(parents[i])
+                augstumi[i] = augstums
+        if augstums > max_height:
+            max_height = augstums
     return max_height
 
 
+def input_file(file):
+    try:
+        with open(f"./test/{file}") as f:
+            saturs = f.readlines()
+    except:
+        print("Error")
+        return None, None
+    
+    n=saturs[0].strip()
+    if n:
+        parents = saturs[1].strip().split(" ")
+        if parents:
+            f.close()
+            return n, parents
+    return None, None
+
+def ievadisana():
+    n = input().strip()
+    if n:
+        parents =  input().strip().split(" ")
+        if parents:
+            return n, parents
+    return None, None
+
 def main():
+    ievadit = input().strip()
+    if ievadit == "F":
+        file = input().strip()
+        if str(file[-1]) != "a":
+            n, parents = input_file(file)
+            if n and parents:
+                augstums = compute_height(n, parents)
+                print(int(augstums))
+    elif ievadit == "I":
+        n, parents = ievadisana()
+        if n and parents:
+            augstums = compute_height(n, parents)
+            print(int(augstums))
+
+    
     # implement input form keyboard and from files
     
     # let user input file name to use, don't allow file names with letter a
@@ -21,7 +73,7 @@ def main():
     # input number of elements
     # input values in one variable, separate with space, split these values in an array
     # call the function and output it's result
-    pass
+
 
 # In Python, the default limit on recursion depth is rather low,
 # so raise it here for this problem. Note that to take advantage
