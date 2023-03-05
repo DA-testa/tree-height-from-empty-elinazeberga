@@ -7,7 +7,7 @@ import numpy
 
 def compute_height(n, parents):
     augstumi = numpy.zeros(n, dtype=int)
-    for i in range(int(n)):
+    for i in range(n):
         if augstumi[i] != 0:
             continue
         augstums = 1
@@ -20,7 +20,7 @@ def compute_height(n, parents):
             vertibas = parents[vertibas]  
         k = i
         while k != -1 and augstumi[k] == 0:
-            augstumi[vertibas] = augstums
+            augstumi[k] = augstums
             augstums -= 1
             k = parents[k]
     return numpy.max(augstumi)
@@ -37,7 +37,7 @@ def main():
             print("Error")
             return
         with open ("test/" + file, "r", encoding='UTF-8') as f:
-            n = int(f.readlines())    
+            n = int(f.readline())    
             parents = numpy.array(list(map(int, f.readline().split)))
     augstums = compute_height(n, parents)
     print(augstums)    
