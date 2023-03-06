@@ -15,6 +15,7 @@ def compute_height(n, parents):
         else:
             augstumi[i] = augstums(parents[i]) + 1
         return augstumi[i]
+    
     for i in range(n):
         augstums(i)
     return int(max(augstumi))
@@ -22,6 +23,7 @@ def compute_height(n, parents):
 
 def main():
     check = input()
+    print(check)
     if "F" in check:
         file = input()
         if "a" not in file:
