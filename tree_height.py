@@ -6,42 +6,37 @@ import numpy
 
 
 def compute_height(n, parents):
-    augstumi = numpy.zeros(n, dtype=int)
-    for i in range(n):
+    augstumi = numpy.zeros(n)
+    def augstums(i):
         if augstumi[i] != 0:
-            continue
-        augstums = 1
-        vertibas = parents[i]
-        while vertibas != -1:
-            if augstumi[vertibas] != 0:
-                augstums += augstumi[vertibas]
-                break
-            augstums += 1 
-            vertibas = parents[vertibas]  
-        k = i
-        while k != -1 and augstumi[k] == 0:
-            augstumi[k] = augstums
-            augstums -= 1
-            k = parents[k]
-    return numpy.max(augstumi)
-
+            return augstumi[i]
+        if parents[i] == -1:
+            augstumi[i] = 1
+        else:
+            augstumi[i] = augstums(parents[i]) + 1
+        return augstumi[i]
+    for i in range(n):
+        augstums(i)
+    return int(max(augstumi))
+       
 
 def main():
     check = input()
-    if check == "I":
-        n = int(input())
-        parents = list(map(int, input().split()))
-    else:
+    if "F" in check:
         file = input()
-        if "a" in file:
+        if "a" not in file:
+            with open ("test/" + file, "r", encoding='UTF-8') as f:
+                ne = int(f.readline())
+                parent = list(map(int, f.readline().split()))
+        else:
             print("Error")
-            return
-        with open ("test/" + file, "r", encoding='UTF-8') as f:
-            n = int(f.readline())    
-            parents = numpy.array(list(map(int, f.readline().split)))
-    augstums = compute_height(n, parents)
-    print(augstums)    
-    
+    elif "I" in check:
+        ne = int(input())
+        parent = list(map(int, input().split()))
+    else:
+        print("Nav derīgs kods")
+    print(compute_height(ne, parent))
+        
 
     
     # implement input form keyboard and from files
